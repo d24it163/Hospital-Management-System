@@ -1,0 +1,79 @@
+<?php
+include_once("config.php");
+$query = mysqli_query($con, "SELECT * FROM doctor");
+?>
+<!DOCTYPE HTML>
+	<html>
+	<head>
+		<title>Doctor Manage| Divyam Hospital</title>
+
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />		
+		<link href="css/style.css" rel='stylesheet' type='text/css' />		
+		<link href="css/font-awesome.css" rel="stylesheet">		
+		<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+			rel='stylesheet' type='text/css'>		
+		<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">		
+		<link href="css/custom.css" rel="stylesheet">	
+		<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+
+	<body class="cbp-spmenu-push">
+		<div class="row">
+			<div class="col-lg-2">
+				<?php include_once('side.php'); ?>
+			</div>
+			<div class="col-lg-10">
+				<div class="main-content">
+					
+					<div id="page-wrapper">
+						<div class="main-page">
+							<div class="tables">
+								<h3 class="title1">Doctor Manage</h3>
+								<button type="submit" name="submit" class="btn btn-default right"
+									style="background-color:rgba(97, 100, 193, 0.85);color:#fff;margin-left: 91%;"><a
+										href="add-doctor.php" style="color:#fff;">ADD Doctor</a></button>
+								<div class="table-responsive bs-example widget-shadow">
+									<h4>Doctor Manage:</h4>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+                                                <th>#</th>
+												<th>Doctor Name</th>
+												<th>Doctor Department</th>
+												<th>Doctor Degree</th>
+												<th>Action</th>
+											
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											while ($row = mysqli_fetch_array($query)) {
+												echo "<tr>";
+                                                echo "<td>".$row['id']."</td>";	
+												echo "<td>".$row['doctor_name']."</td>";	
+												echo "<td>".$row['doctor_dept']."</td>";	
+												echo "<td>".$row['doctor_degree']."</td>";	
+												
+												echo "<td> <a href='doctor-edit.php?id=$row[id]'><i class='bx bxs-edit'></i>
+                                                </a> |
+												<a href='deletedoctor.php?id=$row[id]'><i class='bx bxs-trash'  ></i>
+												</a>
+														</td>
+												</tr>";
+												
+											} ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+			
+	</body>
+
+	</html>
+	
